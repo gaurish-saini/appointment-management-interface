@@ -4,7 +4,7 @@ import AddAppoitnment from "./components/AddAppointment";
 import AppointmentInfo from "./components/AppointmentInfo";
 
 function App() {
-  let [appointmentList, setAppointmentlist] = useState([]);
+  let [appointmentList, setAppointmentList] = useState([]);
   let [query, setQuery] = useState("");
   let [sortBy, setSortBy] = useState("petName");
   let [orderBy, setOrderBy] = useState("asc");
@@ -28,7 +28,7 @@ function App() {
     fetch("./data.json")
       .then((response) => response.json())
       .then((data) => {
-        setAppointmentlist(data);
+        setAppointmentList(data);
       });
   }, []);
 
@@ -39,7 +39,15 @@ function App() {
   return (
     <div className="App container mx-auto mt-3 font-thin">
       <h1 className="text-5xl mb-3">Your Appointments</h1>
-      <AddAppoitnment />
+      <AddAppoitnment
+        onSendAppoinment={(myAppointment) =>
+          setAppointmentList([...appointmentList, myAppointment])
+        }
+        lastId={appointmentList.reduce(
+          (max, item) => (Number(item.id) > max ? Number(item.id) : max),
+          0
+        )}
+      />
       <Search
         query={query}
         onQueryChange={(myQuery) => setQuery(myQuery)}
@@ -53,7 +61,7 @@ function App() {
           <AppointmentInfo
             key={appointment.id}
             onDeleteAppoinment={(appoinmentId) =>
-              setAppointmentlist(
+              setAppointmentList(
                 appointmentList.filter(
                   (appointment) => appointment.id !== appoinmentId
                 )
