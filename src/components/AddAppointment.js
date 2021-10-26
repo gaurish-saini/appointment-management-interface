@@ -35,7 +35,7 @@ const AddAppointment = ({ onSendAppoinment, lastId }) => {
         }`}
       >
         <div>
-          <BiCalendarPlus className="inline-block align-text-top" /> Add
+          <BiCalendarPlus className="inline-block mt-1 align-text-top" /> Add
           Appointment
         </div>
       </button>

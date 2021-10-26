@@ -37,8 +37,8 @@ function App() {
   }, [fetchData]);
 
   return (
-    <div className="App container mx-auto mt-3 font-thin">
-      <h1 className="text-5xl mb-3">Your Appointments</h1>
+    <div className="App container mx-auto md:px-16 pt-8 mt-3 font-thin">
+      <h1 className="text-5xl mb-8">Your Appointments</h1>
       <AddAppoitnment
         onSendAppoinment={(myAppointment) =>
           setAppointmentList([...appointmentList, myAppointment])
@@ -56,7 +56,7 @@ function App() {
         sortBy={sortBy}
         onSortByChange={(mySort) => setSortBy(mySort)}
       />
-      <ul className="divide-y divide-gray-200">
+      <ul className="divide-y divide-gray-200 mb-8">
         {filteredAppointments.map((appointment) => (
           <AppointmentInfo
             key={appointment.id}
